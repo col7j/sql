@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامج صقل - التسجيل الرسمي | Grafik Tasarım Eğitimi Formu</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        saql: {
+                            teal: '#007A93',
+                            tealHover: '#006277',
+                            tealDark: '#004858',
+                            tealLight: '#E6F3F6',
+                            orange: '#F4921E',
+                            orangeHover: '#D97E12',
+                            orangeLight: '#FFF7EB',
+                            cyan: '#00B4D8',
+                            darkBg: '#071920',
+                            darkCard: '#0E2630',
+                            darkBorder: '#1A3B49'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'saql-card': '0 12px 35px rgba(0, 122, 147, 0.08)',
+                        'saql-hover': '0 18px 45px rgba(0, 122, 147, 0.15)',
+                        'saql-focus': '0 0 0 4px rgba(0, 122, 147, 0.25)',
+                        'orange-focus': '0 0 0 4px rgba(244, 146, 30, 0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons for clean, emoji-free iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles for Saql Brand Identity -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f8f9;
+            color: #1a2a30;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dark body {
+            background-color: #051319;
+            color: #ecf4f7;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .dark .glass-panel {
+            background: rgba(14, 38, 48, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* Saql Styled Inputs */
+        .saql-input {
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            background-color: #ffffff;
+            border: 1px solid #cce3e8;
+        }
+
+        .dark .saql-input {
+            background-color: #081d26;
+            border: 1px solid #1c4252;
+            color: #ffffff;
+        }
+
+        .saql-input:focus {
+            border-color: #007A93;
+            box-shadow: 0 0 0 4px rgba(0, 122, 147, 0.18);
+            outline: none;
+        }
+
+        /* Choice Card Selection */
+        .choice-card {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .choice-card:hover {
+            transform: translateY(-2px);
+        }
+
+        input[type="radio"]:checked + .choice-content,
+        input[type="checkbox"]:checked + .choice-content {
+            border-color: #007A93;
+            background-color: rgba(0, 122, 147, 0.06);
+            box-shadow: 0 4px 15px rgba(0, 122, 147, 0.08);
+        }
+
+        .dark input[type="radio"]:checked + .choice-content,
+        .dark input[type="checkbox"]:checked + .choice-content {
+            border-color: #F4921E;
+            background-color: rgba(244, 146, 30, 0.12);
+            box-shadow: 0 4px 15px rgba(244, 146, 30, 0.12);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b2d5dd;
+            border-radius: 99px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1c4252;
+        }
+
+        /* Logo Emblem Component */
+        .logo-emblem {
+            background: linear-gradient(135deg, #007A93 0%, #005C70 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-saql-teal selection:text-white transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-saql-teal/10 dark:border-saql-teal/20 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <div class="flex items-center space-x-3.5 space-x-reverse">
+                <a href="#" class="flex items-center justify-center p-2 rounded-2xl bg-white dark:bg-white/95 border border-saql-teal/20 shadow-sm transition-transform hover:scale-105">
+                    <img src="https://i.ibb.co/k2vZHRqB/logo.png" 
+                         onerror="if(this.src!=='https://i.ibb.co/k2vZHRqB'){this.src='https://i.ibb.co/k2vZHRqB';}" 
+                         alt="شعار برنامج صقل" 
+                         class="h-12 sm:h-14 w-auto max-w-[220px] object-contain">
+                    <svg id="headerFallbackSvg" class="h-10 w-auto hidden" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Abstract Figure Ribbon Teal -->
+                        <path d="M260 25C240 25 228 45 235 68C242 90 268 105 272 108C274 110 278 106 276 102C268 85 252 65 258 48C263 35 272 32 280 40C288 48 290 68 285 85C282 95 272 110 270 115C268 120 275 120 278 115C288 100 298 75 295 50C292 28 275 25 260 25Z" fill="#007A93"/>
+                        <!-- Abstract Figure Ribbon Orange -->
+                        <path d="M275 38C265 38 258 48 262 60C266 72 278 82 280 85C282 88 285 85 284 82C280 72 270 60 273 50C276 42 282 40 286 45C290 50 291 62 288 72C286 78 280 88 279 92C278 95 282 95 284 92C290 82 296 68 294 52C292 40 283 38 275 38Z" fill="#F4921E"/>
+                        <!-- Head Circles -->
+                        <circle cx="252" cy="18" r="9" fill="#007A93"/>
+                        <circle cx="280" cy="24" r="6.5" fill="#F4921E"/>
+                        <text x="215" y="60" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-weight="900" font-size="36" fill="#007A93">برنامج صقل</text>
+                    </svg>
+                </a>
+
+                <div class="hidden lg:flex items-center space-x-3 space-x-reverse pr-3 border-r border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center space-x-2 space-x-reverse px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-saql-darkCard border border-saql-teal/15">
+                        <i class="fa-solid fa-hand-holding-heart text-saql-orange text-xs"></i>
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300" id="headerSupportingLabel">الجمعية الداعمة والمنفذة</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex flex-col border-r border-slate-200 dark:border-slate-700 pr-3.5">
+                    <span class="text-xs font-bold text-saql-teal dark:text-saql-cyan uppercase tracking-wider" id="brandSubtitle">Grafik Tasarım Eğitimi</span>
+                    <span class="font-bold text-sm text-slate-800 dark:text-slate-100" id="brandTitle">النسخة الرسمية السابعة</span>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-saql-teal/10 dark:hover:bg-white/10 transition-all" title="تغيير المظهر">
+                    <i class="fa-solid fa-moon text-lg dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-lg hidden dark:block text-saql-orange"></i>
+                </button>
+
+                <button onclick="toggleLanguage()" class="flex items-center space-x-2 space-x-reverse px-3.5 py-1.5 rounded-full border border-saql-teal/30 dark:border-saql-teal/50 text-xs font-semibold hover:bg-saql-teal/5 dark:hover:bg-saql-darkCard transition-all text-saql-teal dark:text-saql-cyan">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="currentLangText">العربية</span>
+                </button>
+
+                <a href="#registrationSection" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold rounded-full bg-saql-teal hover:bg-saql-tealHover text-white shadow-md hover:shadow-lg transition-all duration-200">
+                    <span id="navRegisterBtn">سجل الآن</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative overflow-hidden py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                
+                <div class="inline-flex flex-col items-center justify-center p-6 sm:p-8 rounded-3xl bg-white dark:bg-saql-darkCard border border-saql-teal/20 dark:border-saql-teal/40 shadow-saql-card mb-8 max-w-2xl w-full">
+                    
+                    <!-- Main Program Logo -->
+                    <div class="w-full flex justify-center items-center py-2 mb-4">
+                        <img src="https://i.ibb.co/k2vZHRqB/logo.png" 
+                             onerror="if(this.src!=='https://ibb.co/k2vZHRqB'){this.src='https://ibb.co/k2vZHRqB';}else{this.style.display='none';document.getElementById('heroFallbackSvg').classList.remove('hidden');}" 
+                             alt="شعار برنامج صقل كامل" 
+                             class="h-28 sm:h-36 md:h-40 w-auto max-w-full object-contain filter drop-shadow-xs">
+                    </div>
+                    
+                    <svg id="heroFallbackSvg" class="h-20 sm:h-24 w-auto mb-3 hidden" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M260 25C240 25 228 45 235 68C242 90 268 105 272 108C274 110 278 106 276 102C268 85 252 65 258 48C263 35 272 32 280 40C288 48 290 68 285 85C282 95 272 110 270 115C268 120 275 120 278 115C288 100 298 75 295 50C292 28 275 25 260 25Z" fill="#007A93"/>
+                        <path d="M275 38C265 38 258 48 262 60C266 72 278 82 280 85C282 88 285 85 284 82C280 72 270 60 273 50C276 42 282 40 286 45C290 50 291 62 288 72C286 78 280 88 279 92C278 95 282 95 284 92C290 82 296 68 294 52C292 40 283 38 275 38Z" fill="#F4921E"/>
+                        <circle cx="252" cy="18" r="9" fill="#007A93"/>
+                        <circle cx="280" cy="24" r="6.5" fill="#F4921E"/>
+                        <text x="215" y="60" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-weight="900" font-size="38" fill="#007A93">برنامج صقل</text>
+                        <text x="215" y="82" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-weight="600" font-size="14" fill="#5C6066">لتنمية وتأهيل القيادات الشبابية</text>
+                        <text x="215" y="98" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Arial, sans-serif" font-weight="500" font-size="11" fill="#8C9096">for Development of Youth Leaders</text>
+                    </svg>
+                    
+                    <div class="w-full h-1 bg-gradient-to-r from-saql-teal via-saql-orange to-saql-teal rounded-full opacity-80 my-3"></div>
+
+                    <!-- Supporting and Executing Associations Banner -->
+                    <div class="w-full pt-4 border-t border-saql-teal/10 dark:border-saql-teal/20 flex flex-col sm:flex-row items-center justify-between gap-4 bg-saql-tealLight/40 dark:bg-saql-darkBg/60 p-4 sm:p-5 rounded-2xl">
+                        <div class="flex items-center space-x-3 space-x-reverse">
+                            <i class="fa-solid fa-building-columns text-saql-teal dark:text-saql-cyan text-xl"></i>
+                            <div class="text-right rtl:text-right ltr:text-left">
+                                <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block uppercase tracking-wider" id="lblSupporting">الجمعية الداعمة والمنفذة</span>
+                                <span class="text-sm font-bold text-slate-900 dark:text-white" id="valSupporting">جمعية التنمية الأهلية & جمعية البر</span>
+                            </div>
+                        </div>
+
+                        <div class="h-12 w-px bg-saql-teal/20 hidden sm:block"></div>
+
+                        <!-- Organization Partners Logo Container - Full Uncropped View -->
+                        <div class="flex items-center justify-center p-2 rounded-2xl bg-white dark:bg-white/95 border border-saql-teal/20 shadow-sm w-full sm:w-auto">
+                            <img src="https://i.ibb.co/Wv3Gx91w/partners.png" 
+                                 onerror="if(this.src!=='https://i.ibb.co/Wv3Gx91w'){this.src='https://i.ibb.co/Wv3Gx91w';}" 
+                                 alt="شعارات الجمعية الداعمة والمنفذة" 
+                                 class="h-16 sm:h-20 md:h-22 w-auto max-w-full object-contain">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-1.5 rounded-full bg-saql-orange/15 text-saql-orangeHover dark:text-saql-orange text-xs font-bold mb-4 border border-saql-orange/30">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    <span id="heroBadge">التسجيل الرسمي المباشر</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight mb-3" id="heroTitle">
+                    التسجيل في برنامج صقل
+                </h1>
+                
+                <h2 class="text-lg sm:text-2xl font-bold text-saql-teal dark:text-saql-cyan mb-6" id="heroSubtitle">
+                    Grafik Tasarım Eğitimi Formu
+                </h2>
+
+                <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8" id="heroDesc">
+                    برنامج صقل لتنمية وتأهيل القيادات الشبابية — خطوتك نحو تطوير مهاراتك وصقل خبراتك الاحترافية بأسلوب حديث وتطبيقات عملية متقدمة.
+                </p>
+
+                <!-- Quick Stats/Features -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-center pt-2">
+                    <div class="p-4 rounded-2xl bg-white/90 dark:bg-saql-darkCard/90 border border-saql-teal/15 dark:border-saql-teal/30 shadow-sm flex flex-col items-center">
+                        <i class="fa-solid fa-laptop-code text-2xl text-saql-teal dark:text-saql-cyan mb-2"></i>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200" id="feat1">تطبيق عملي</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/90 dark:bg-saql-darkCard/90 border border-saql-teal/15 dark:border-saql-teal/30 shadow-sm flex flex-col items-center">
+                        <i class="fa-solid fa-user-check text-2xl text-saql-orange mb-2"></i>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200" id="feat2">متابعة فردية</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/90 dark:bg-saql-darkCard/90 border border-saql-teal/15 dark:border-saql-teal/30 shadow-sm flex flex-col items-center">
+                        <i class="fa-solid fa-certificate text-2xl text-saql-teal dark:text-saql-cyan mb-2"></i>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200" id="feat3">شهادة معتمدة</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/90 dark:bg-saql-darkCard/90 border border-saql-teal/15 dark:border-saql-teal/30 shadow-sm flex flex-col items-center">
+                        <i class="fa-solid fa-handshake text-2xl text-saql-orange mb-2"></i>
+                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200" id="feat4">فرص تمكين</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="registrationSection" class="py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            
+            <div class="bg-white dark:bg-saql-darkCard rounded-3xl shadow-saql-card border border-saql-teal/20 dark:border-saql-teal/40 overflow-hidden">
+                
+                <!-- Card Header -->
+                <div class="p-6 sm:p-8 bg-saql-tealLight/50 dark:bg-saql-teal/10 border-b border-saql-teal/15 dark:border-saql-teal/30">
+                    <div class="flex items-center space-x-3.5 space-x-reverse mb-2">
+                        <div class="w-12 h-12 rounded-2xl bg-saql-teal text-white flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-file-signature text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" id="formHeaderTitle">استمارة التسجيل الرسمية</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300" id="formHeaderSub">يرجى تعبئة جميع الحقول المطلوبة بدقة</p>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Banner -->
+                    <div class="mt-4 p-4 rounded-2xl bg-white/80 dark:bg-saql-darkBg/80 border border-saql-teal/20 dark:border-saql-teal/40 text-slate-700 dark:text-slate-200 flex items-start space-x-3 space-x-reverse">
+                        <i class="fa-solid fa-circle-info text-saql-teal dark:text-saql-cyan text-lg mt-0.5"></i>
+                        <div class="text-xs sm:text-sm leading-relaxed" id="instructionsText">
+                            <strong class="font-bold text-saql-teal dark:text-saql-cyan block mb-0.5">التعليمات:</strong>
+                            يرجى تعبئة البيانات التالية بدقة لتخصيص الواجهة وتوفير تجربة تعليمية متكاملة.
+                        </div>
+                    </div>
+                </div>
+
+                <form id="registrationForm" 
+                      action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfodwrl2KA1NuLYbVehpe0HPHZA-rLH98zKs2zJqbJHgNnvIw/formResponse" 
+                      method="POST" 
+                      target="_blank"
+                      onsubmit="handleFormSubmit(event)" 
+                      class="p-6 sm:p-8 space-y-10">
+                    
+                    <!-- Hidden Google Form Metadata Inputs -->
+                    <input type="hidden" name="fvv" value="1">
+                    <input type="hidden" name="fbzx" value="2465903220377864337">
+
+                    <!-- Section 1 -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-saql-teal dark:text-saql-cyan font-bold text-base border-b border-saql-teal/20 dark:border-saql-teal/40 pb-3">
+                            <i class="fa-solid fa-user-id-card text-saql-orange"></i>
+                            <span id="sec1Title">1. البيانات الشخصية ومعلومات الهوية</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <!-- Full Name Arabic -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelArabicName">الاسم الثلاثي (بالعربي) كما في الهوية</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-user text-sm"></i>
+                                    </span>
+                                    <input type="text" name="entry.1392436787" required placeholder="أدخل اسمك الثلاثي بالعربي..." 
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm">
+                                </div>
+                            </div>
+
+                            <!-- Full Name English -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelEnglishName">الاسم الثلاثي (بالانجليزي) كما في الهوية</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-font text-sm"></i>
+                                    </span>
+                                    <input type="text" name="entry.1117229129" required placeholder="Full Name in English..." dir="ltr"
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm text-left">
+                                </div>
+                            </div>
+
+                            <!-- National ID / Iqama -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelID">رقم الهوية</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-address-card text-sm"></i>
+                                    </span>
+                                    <input type="text" name="entry.1041399105" required placeholder="10XXXXXXXX" dir="ltr"
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm text-left">
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelEmail">البريد الالكتروني</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-envelope text-sm"></i>
+                                    </span>
+                                    <input type="email" name="entry.1462749164" required placeholder="example@domain.com" dir="ltr"
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm text-left">
+                                </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelPhone">رقم الجوال (يبدأ بـ 05)</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-mobile-screen text-sm"></i>
+                                    </span>
+                                    <input type="tel" name="entry.585896000" required pattern="05[0-9]{8}" placeholder="05XXXXXXXX" dir="ltr"
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm text-left">
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" id="phoneHint">ملاحظة: يرجى كتابة الرقم بالصيغة المحلية (مثل 0512345678)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-saql-teal dark:text-saql-cyan font-bold text-base border-b border-saql-teal/20 dark:border-saql-teal/40 pb-3">
+                            <i class="fa-solid fa-graduation-cap text-saql-orange"></i>
+                            <span id="sec2Title">2. المرحلة الدراسية والمؤسسة التعليمية</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <!-- Educational Stage Select -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelEducation">المرحلة الدراسية</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-layer-group text-sm"></i>
+                                    </span>
+                                    <select name="entry.263792117" required class="saql-input w-full pr-10 pl-8 py-3 rounded-2xl text-sm appearance-none cursor-pointer">
+                                        <option value="" disabled selected id="optSelectDefault">اختر المرحلة الدراسية...</option>
+                                        <option value="الصف الثالث ثانوي">الصف الثالث ثانوي</option>
+                                        <option value="خريج ثانوي">خريج ثانوي</option>
+                                        <option value="المرحلة الجامعية - السنة الأولى">المرحلة الجامعية - السنة الأولى</option>
+                                        <option value="المرحلة الجامعية - السنة الثانية">المرحلة الجامعية - السنة الثانية</option>
+                                        <option value="المرحلة الجامعية - سنة الثالة">المرحلة الجامعية - سنة الثالثة</option>
+                                        <option value="المرحلة الجامعية - السنة الرابعة">المرحلة الجامعية - السنة الرابعة</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- School or University Name -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                    <span id="labelSchool">اسم المدرسة او الجامعة</span> <span class="text-saql-orange">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-saql-teal/60 dark:text-saql-cyan/60">
+                                        <i class="fa-solid fa-building-columns text-sm"></i>
+                                    </span>
+                                    <input type="text" name="entry.405766276" required placeholder="أدخل اسم المدرسة أو الجامعة..." 
+                                           class="saql-input w-full pr-10 pl-4 py-3 rounded-2xl text-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-saql-teal dark:text-saql-cyan font-bold text-base border-b border-saql-teal/20 dark:border-saql-teal/40 pb-3">
+                            <i class="fa-solid fa-award text-saql-orange"></i>
+                            <span id="sec3Title">3. الدورات التطويرية والأنشطة التطوعية</span>
+                        </div>
+
+                        <!-- Participated in Dev Courses Radio -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
+                                <span id="labelDevCourses">هل سبق وشاركت في برامج ودورات تطويرية؟</span> <span class="text-saql-orange">*</span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="cursor-pointer choice-card">
+                                    <input type="radio" name="entry.1746281269" value="نعم" required class="sr-only">
+                                    <div class="choice-content p-4 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 text-center flex items-center justify-center space-x-2 space-x-reverse">
+                                        <i class="fa-solid fa-circle-check text-saql-teal dark:text-saql-cyan"></i>
+                                        <span class="font-bold text-sm text-slate-900 dark:text-white" id="radioYes1">نعم</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="radio" name="entry.1746281269" value="لا" class="sr-only">
+                                    <div class="choice-content p-4 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 text-center flex items-center justify-center space-x-2 space-x-reverse">
+                                        <i class="fa-solid fa-circle-xmark text-slate-400"></i>
+                                        <span class="font-bold text-sm text-slate-900 dark:text-white" id="radioNo1">لا</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Courses Textarea -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                <span id="labelCoursesList">اذكر بعض البرامج او الدورات التدريبية التي شاركت فيها</span>
+                            </label>
+                            <textarea name="entry.163498579" rows="2" placeholder="اكتب أسماء الدورات إن وجدت..." 
+                                      class="saql-input w-full p-4 rounded-2xl text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Volunteering Radio -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
+                                <span id="labelVolunteer">هل سبق لك المشاركة في برامج تطوعية؟</span> <span class="text-saql-orange">*</span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="cursor-pointer choice-card">
+                                    <input type="radio" name="entry.179545516" value="نعم" required class="sr-only">
+                                    <div class="choice-content p-4 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 text-center flex items-center justify-center space-x-2 space-x-reverse">
+                                        <i class="fa-solid fa-hands-holding-child text-saql-orange"></i>
+                                        <span class="font-bold text-sm text-slate-900 dark:text-white" id="radioYes2">نعم</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="radio" name="entry.179545516" value="لا" class="sr-only">
+                                    <div class="choice-content p-4 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 text-center flex items-center justify-center space-x-2 space-x-reverse">
+                                        <i class="fa-solid fa-circle-xmark text-slate-400"></i>
+                                        <span class="font-bold text-sm text-slate-900 dark:text-white" id="radioNo2">لا</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-saql-teal dark:text-saql-cyan font-bold text-base border-b border-saql-teal/20 dark:border-saql-teal/40 pb-3">
+                            <i class="fa-solid fa-compass text-saql-orange"></i>
+                            <span id="sec4Title">4. التعريف بالنفس والتعرف على البرنامج</span>
+                        </div>
+
+                        <!-- How did you hear about Saql Checkboxes -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
+                                <span id="labelReferral">كيف تعرفت على برنامج - صقل؟</span> <span class="text-saql-orange">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" name="entry.1240181843" value="من خلال جمعية البر" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-solid fa-building text-saql-teal dark:text-saql-cyan"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">من خلال جمعية البر</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" name="entry.1240181843" value="من خلال منصة x جمعية التنمية" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-brands fa-x-twitter text-slate-800 dark:text-white"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">منصة X جمعية التنمية</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" name="entry.1240181843" value="سناب شات" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-brands fa-snapchat text-amber-500"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">سناب شات</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" name="entry.1240181843" value="انستقرام" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-brands fa-instagram text-pink-500"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">انستقرام</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" name="entry.1240181843" value="من خلال الاصدقاء" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-solid fa-users text-saql-orange"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">من خلال الأصدقاء</span>
+                                    </div>
+                                </label>
+
+                                <label class="cursor-pointer choice-card">
+                                    <input type="checkbox" id="referralOtherCheck" name="entry.1240181843" value="__other_option__" onclick="toggleOtherReferralInput()" class="sr-only">
+                                    <div class="choice-content p-3.5 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                        <i class="fa-solid fa-ellipsis text-slate-400"></i>
+                                        <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">أخرى</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Custom Other Input -->
+                            <div id="otherReferralBox" class="mt-3 hidden">
+                                <input type="text" name="entry.1240181843.other_option_response" placeholder="يرجى توضيح المصدر..." 
+                                       class="saql-input w-full p-3 rounded-2xl text-xs">
+                            </div>
+                        </div>
+
+                        <!-- Bio in 2 lines -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                <span id="labelBio">في سطرين اكتب عن نفسك</span> <span class="text-saql-orange">*</span>
+                            </label>
+                            <textarea name="entry.360660854" required rows="2" placeholder="نبذة مختصرة عن شغفك واهتماماتك..." 
+                                      class="saql-input w-full p-4 rounded-2xl text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Program Expectations -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                                <span id="labelExpectations">مساحة حرة غير إلزامية - ماذا تتوقع أن يقدم لك برنامج صقل؟</span>
+                            </label>
+                            <textarea name="entry.1023564294" rows="3" placeholder="تطلعاتك وأهدافك من الانضمام للبرنامج..." 
+                                      class="saql-input w-full p-4 rounded-2xl text-sm resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-saql-teal dark:text-saql-cyan font-bold text-base border-b border-saql-teal/20 dark:border-saql-teal/40 pb-3">
+                            <i class="fa-solid fa-credit-card text-saql-orange"></i>
+                            <span id="sec5Title">5. تأكيد التسجيل ورسوم الاشتراك</span>
+                        </div>
+
+                        <!-- Payment Callout Notice -->
+                        <div class="p-6 rounded-3xl bg-saql-tealLight/40 dark:bg-saql-darkBg/90 border border-saql-teal/25 dark:border-saql-teal/40 space-y-4">
+                            <div class="flex items-start space-x-3 space-x-reverse">
+                                <i class="fa-solid fa-shield-halved text-2xl text-saql-teal dark:text-saql-cyan mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white" id="payNoticeTitle">آلية تأكيد التسجيل:</h4>
+                                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-1" id="payNoticeDesc">
+                                        يتم تحويل مبلغ <strong>(200 ريال سعودي)</strong> لتأكيد التسجيل، ويتم خصمها من كامل المبلغ بعد اجتياز المقابلة الشخصية ودفع بقية المبلغ.
+                                        <br>
+                                        <span class="text-saql-orange font-bold">* في حال عدم القبول أو عدم اجتياز المقابلة الشخصية سيتم استرجاع المبلغ بالكامل.</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Bank Cards Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <!-- Bank Albilad -->
+                                <div class="p-4 rounded-2xl bg-white dark:bg-saql-darkCard border border-saql-teal/20 dark:border-saql-teal/40 shadow-sm relative">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200">بنك البلاد</span>
+                                        <i class="fa-solid fa-building-columns text-saql-teal dark:text-saql-cyan"></i>
+                                    </div>
+                                    <div class="bg-saql-tealLight/60 dark:bg-saql-darkBg p-2.5 rounded-xl flex items-center justify-between font-mono text-xs">
+                                        <span class="select-all text-slate-900 dark:text-slate-100" id="iban1">SA5715000999124810600007</span>
+                                        <button type="button" onclick="copyToClipboard('SA5715000999124810600007', this)" class="text-saql-teal hover:text-saql-tealHover dark:text-saql-cyan text-xs font-sans px-2.5 py-1 rounded-lg bg-white dark:bg-saql-darkCard border border-saql-teal/20 shadow-xs">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Al Rajhi Bank -->
+                                <div class="p-4 rounded-2xl bg-white dark:bg-saql-darkCard border border-saql-teal/20 dark:border-saql-teal/40 shadow-sm relative">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-bold text-slate-800 dark:text-slate-200">مصرف الراجحي</span>
+                                        <i class="fa-solid fa-building-columns text-saql-teal dark:text-saql-cyan"></i>
+                                    </div>
+                                    <div class="bg-saql-tealLight/60 dark:bg-saql-darkBg p-2.5 rounded-xl flex items-center justify-between font-mono text-xs">
+                                        <span class="select-all text-slate-900 dark:text-slate-100" id="iban2">432608010552287</span>
+                                        <button type="button" onclick="copyToClipboard('432608010552287', this)" class="text-saql-teal hover:text-saql-tealHover dark:text-saql-cyan text-xs font-sans px-2.5 py-1 rounded-lg bg-white dark:bg-saql-darkCard border border-saql-teal/20 shadow-xs">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sending Receipt Contact Info -->
+                            <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-saql-teal/15 dark:border-saql-teal/30">
+                                <div class="flex items-center space-x-2 space-x-reverse">
+                                    <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i>
+                                    <span>إرسال الإيصال عبر الواتساب: <a href="https://wa.me/966581317066" target="_blank" class="font-bold text-slate-900 dark:text-white hover:underline" dir="ltr">0581317066</a></span>
+                                </div>
+                                <div class="flex items-center space-x-2 space-x-reverse">
+                                    <i class="fa-solid fa-at text-saql-teal dark:text-saql-cyan text-sm"></i>
+                                    <span>البريد: <a href="mailto:info@tnmlaa.org.sa" class="font-bold text-slate-900 dark:text-white hover:underline">info@tnmlaa.org.sa</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Radio Choice for Confirmation -->
+                        <div>
+                            <label class="cursor-pointer choice-card block">
+                                <input type="radio" name="entry.253529817" value="سيتم تحويل المبغ على حساب الجمعية و ارسال الايصال" required class="sr-only">
+                                <div class="choice-content p-4 rounded-2xl border border-saql-teal/20 dark:border-saql-teal/40 bg-slate-50/50 dark:bg-saql-darkBg/60 flex items-center space-x-3 space-x-reverse">
+                                    <i class="fa-solid fa-circle-check text-saql-teal dark:text-saql-cyan text-lg"></i>
+                                    <span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white" id="confirmText">
+                                        سيتم تحويل المبلغ على حساب الجمعية وإرسال الإيصال
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Actions -->
+                    <div class="pt-6 border-t border-saql-teal/15 dark:border-saql-teal/30 flex flex-col sm:flex-row gap-4">
+                        <button type="submit" id="submitBtn" 
+                                class="w-full sm:flex-1 py-4 px-6 rounded-2xl bg-saql-teal hover:bg-saql-tealHover text-white font-bold text-base shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center space-x-2 space-x-reverse group">
+                            <span id="submitBtnText">إرسال طلب التسجيل</span>
+                            <i class="fa-solid fa-paper-plane text-sm group-hover:translate-x-1 transition-transform rtl:group-hover:-translate-x-1"></i>
+                        </button>
+
+                        <button type="reset" class="py-4 px-6 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-saql-darkBg dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm transition-all text-center">
+                            <span id="resetBtnText">إلغاء وتفريغ البيانات</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md hidden transition-opacity duration-300">
+        <div class="bg-white dark:bg-saql-darkCard rounded-3xl p-8 max-w-md w-full mx-4 text-center shadow-2xl border border-saql-teal/20 dark:border-saql-teal/40 transform transition-transform duration-300 scale-95" id="modalCard">
+            <div class="w-16 h-16 bg-saql-tealLight dark:bg-saql-teal/30 text-saql-teal dark:text-saql-cyan rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2" id="modalTitle">تم تحويل الطلب بنجاح!</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed" id="modalMessage">
+                شكراً لتسجيلك في برنامج صقل. تم فتح نموذج Google لاستكمال المزامنة الرسمية، وسيتم التواصل معك فور مراجعة بياناتك وإيصال التحويل.
+            </p>
+            <button onclick="closeModal()" class="w-full py-3.5 rounded-2xl bg-saql-teal hover:bg-saql-tealHover text-white font-bold text-sm transition-all shadow-md" id="modalCloseBtn">
+                حسناً، فهمت
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-saql-darkCard border-t border-saql-teal/15 dark:border-saql-teal/30 py-10 mt-12 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 sm:space-x-reverse text-center md:text-right">
+                    <div class="flex items-center space-x-3 space-x-reverse p-2.5 rounded-2xl bg-white dark:bg-white/95 border border-saql-teal/20 shadow-xs">
+                        <img src="https://i.ibb.co/k2vZHRqB/logo.png" 
+                             onerror="if(this.src!=='https://i.ibb.co/k2vZHRqB'){this.src='https://i.ibb.co/k2vZHRqB';}" 
+                             alt="شعار برنامج صقل" 
+                             class="h-10 sm:h-12 w-auto object-contain">
+                        <div class="h-8 w-px bg-saql-teal/20"></div>
+                        <img src="https://i.ibb.co/Wv3Gx91w/partners.png" 
+                             onerror="if(this.src!=='https://i.ibb.co/Wv3Gx91w'){this.src='https://i.ibb.co/Wv3Gx91w';}" 
+                             alt="شعارات الجمعية الداعمة والمنفذة" 
+                             class="h-10 sm:h-12 w-auto object-contain">
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400">
+                        <p class="font-bold text-slate-800 dark:text-slate-200">برنامج صقل - لتنمية وتأهيل القيادات الشبابية</p>
+                        <p id="ftOrgInfo">بإشراف وتنفيذ الجمعية الداعمة والجمعية المنفذة © 2026 جميع الحقوق محفوظة.</p>
+                    </div>
+                </div>
+
+                <!-- Footer Quick Links -->
+                <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-400">
+                    <a href="#" class="hover:text-saql-teal dark:hover:text-saql-cyan transition-colors" id="ftPrivacy">سياسة الخصوصية</a>
+                    <a href="#" class="hover:text-saql-teal dark:hover:text-saql-cyan transition-colors" id="ftTerms">الشروط والأحكام</a>
+                    <a href="#" class="hover:text-saql-teal dark:hover:text-saql-cyan transition-colors" id="ftSupport">الدعم الفني</a>
+                </div>
+
+                <!-- Clickable Social Media Icons (0 Emojis) -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 rounded-full bg-slate-100 dark:bg-saql-darkBg text-slate-700 dark:text-slate-300 hover:bg-saql-teal hover:text-white dark:hover:bg-saql-teal transition-all duration-200 flex items-center justify-center shadow-xs"
+                       aria-label="Instagram">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                    </a>
+                    
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 rounded-full bg-slate-100 dark:bg-saql-darkBg text-slate-700 dark:text-slate-300 hover:bg-saql-teal hover:text-white dark:hover:bg-saql-teal transition-all duration-200 flex items-center justify-center shadow-xs"
+                       aria-label="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter text-base"></i>
+                    </a>
+
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 rounded-full bg-slate-100 dark:bg-saql-darkBg text-slate-700 dark:text-slate-300 hover:bg-saql-teal hover:text-white dark:hover:bg-saql-teal transition-all duration-200 flex items-center justify-center shadow-xs"
+                       aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in text-base"></i>
+                    </a>
+
+                    <a href="https://wa.me/966581317066" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 rounded-full bg-slate-100 dark:bg-saql-darkBg text-slate-700 dark:text-slate-300 hover:bg-emerald-500 hover:text-white transition-all duration-200 flex items-center justify-center shadow-xs"
+                       aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'ar';
+
+        const translations = {
+            ar: {
+                brandSubtitle: "Grafik Tasarım Eğitimi",
+                brandTitle: "النسخة الرسمية السابعة",
+                headerSupportingLabel: "الجمعية الداعمة والمنفذة",
+                lblSupporting: "الجهة الداعمة والمنفذة",
+                valSupporting: "جمعية التنمية الأهلية & جمعية البر",
+                ftOrgInfo: "بإشراف وتنفيذ الجمعية الداعمة والجمعية المنفذة © 2026 جميع الحقوق محفوظة.",
+                currentLangText: "العربية",
+                navRegisterBtn: "سجل الآن",
+                heroBadge: "التسجيل الرسمي المباشر",
+                heroTitle: "التسجيل في برنامج صقل",
+                heroSubtitle: "Grafik Tasarım Eğitimi Formu",
+                heroDesc: "برنامج صقل لتنمية وتأهيل القيادات الشبابية — خطوتك نحو تطوير مهاراتك وصقل خبراتك الاحترافية بأسلوب حديث وتطبيقات عملية متقدمة.",
+                feat1: "تطبيق عملي",
+                feat2: "متابعة فردية",
+                feat3: "شهادة معتمدة",
+                feat4: "فرص تمكين",
+                formHeaderTitle: "استمارة التسجيل الرسمية",
+                formHeaderSub: "يرجى تعبئة جميع الحقول المطلوبة بدقة",
+                instructionsText: "<strong class='font-bold block mb-0.5'>التعليمات:</strong>يرجى تعبئة البيانات التالية بدقة لتخصيص الواجهة وتوفير تجربة تعليمية متكاملة.",
+                sec1Title: "1. البيانات الشخصية ومعلومات الهوية",
+                labelArabicName: "الاسم الثلاثي (بالعربي) كما في الهوية",
+                labelEnglishName: "الاسم الثلاثي (بالانجليزي) كما في الهوية",
+                labelID: "رقم الهوية",
+                labelEmail: "البريد الالكتروني",
+                labelPhone: "رقم الجوال (يبدأ بـ 05)",
+                phoneHint: "ملاحظة: يرجى كتابة الرقم بالصيغة المحلية (مثل 0512345678)",
+                sec2Title: "2. المرحلة الدراسية والمؤسسة التعليمية",
+                labelEducation: "المرحلة الدراسية",
+                optSelectDefault: "اختر المرحلة الدراسية...",
+                labelSchool: "اسم المدرسة او الجامعة",
+                sec3Title: "3. الدورات التطويرية والأنشطة التطوعية",
+                labelDevCourses: "هل سبق وشاركت في برامج ودورات تطويرية؟",
+                radioYes1: "نعم",
+                radioNo1: "لا",
+                labelCoursesList: "اذكر بعض البرامج او الدورات التدريبية التي شاركت فيها",
+                labelVolunteer: "هل سبق لك المشاركة في برامج تطوعية؟",
+                radioYes2: "نعم",
+                radioNo2: "لا",
+                sec4Title: "4. التعريف بالنفس والتعرف على البرنامج",
+                labelReferral: "كيف تعرفت على برنامج - صقل؟",
+                labelBio: "في سطرين اكتب عن نفسك",
+                labelExpectations: "مساحة حرة غير إلزامية - ماذا تتوقع أن يقدم لك برنامج صقل؟",
+                sec5Title: "5. تأكيد التسجيل ورسوم الاشتراك",
+                payNoticeTitle: "آلية تأكيد التسجيل:",
+                payNoticeDesc: "يتم تحويل مبلغ (200 ريال سعودي) لتأكيد التسجيل، ويتم خصمها من كامل المبلغ بعد اجتياز المقابلة الشخصية ودفع بقية المبلغ. <br><span class='text-saql-orange font-bold'>* في حال عدم القبول أو عدم اجتياز المقابلة الشخصية سيتم استرجاع المبلغ بالكامل.</span>",
+                confirmText: "سيتم تحويل المبلغ على حساب الجمعية وإرسال الإيصال",
+                submitBtnText: "إرسال طلب التسجيل",
+                resetBtnText: "إلغاء وتفريغ البيانات",
+                modalTitle: "تم تحويل الطلب بنجاح!",
+                modalMessage: "شكراً لتسجيلك في برنامج صقل. تم فتح نموذج Google لاستكمال المزامنة الرسمية، وسيتم التواصل معك فور مراجعة بياناتك وإيصال التحويل.",
+                modalCloseBtn: "حسناً، فهمت",
+                ftPrivacy: "سياسة الخصوصية",
+                ftTerms: "الشروط والأحكام",
+                ftSupport: "الدعم الفني"
+            },
+            tr: {
+                brandSubtitle: "Grafik Tasarım Eğitimi",
+                brandTitle: "Saql Programı - 7. Dönem",
+                headerSupportingLabel: "Destekleyen ve Yürütücü Dernek",
+                lblSupporting: "Destekleyen ve Yürütücü Dernekler",
+                valSupporting: "Toplumsal Gelişim Derneği & Birr Derneği",
+                ftOrgInfo: "Destekleyen ve yürütücü derneklerin denetiminde © 2026 Tüm Hakları Saklıdır.",
+                currentLangText: "Türkçe",
+                navRegisterBtn: "Şimdi Kaydol",
+                heroBadge: "Resmi Doğrudan Kayıt",
+                heroTitle: "Saql Programı Kayıt Formu",
+                heroSubtitle: "Grafik Tasarım Eğitimi Formu",
+                heroDesc: "Genç Liderlerin Gelişimi İçin Saql Programı — Becerilerinizi geliştirmek ve pratik uygulamalarla deneyiminizi artırmak için ilk adım.",
+                feat1: "Pratik Uygulama",
+                feat2: "Birebir Takip",
+                feat3: "Onaylı Sertifika",
+                feat4: "Gelişim Fırsatları",
+                formHeaderTitle: "Resmi Başvuru Formu",
+                formHeaderSub: "Lütfen gerekli tüm alanları eksiksiz doldurun",
+                instructionsText: "<strong class='font-bold block mb-0.5'>Talimatlar:</strong>Arayüzü ve eğitimi kişiselleştirmek için bilgileri doğru doldurunuz.",
+                sec1Title: "1. Kişisel Bilgiler ve Kimlik",
+                labelArabicName: "Arapça Ad Soyad (Kimlikteki)",
+                labelEnglishName: "İngilizce Ad Soyad (Kimlikteki)",
+                labelID: "Kimlik Numarası",
+                labelEmail: "E-posta Adresi",
+                labelPhone: "Telefon Numarası (05 ile başlayan)",
+                phoneHint: "Not: Yerel formatta yazınız (Örn: 0512345678)",
+                sec2Title: "2. Eğitim Durumu ve Kurum",
+                labelEducation: "Eğitim Seviyesi",
+                optSelectDefault: "Eğitim seviyesini seçin...",
+                labelSchool: "Okul veya Üniversite Adı",
+                sec3Title: "3. Kurslar ve Gönüllülük Deneyimi",
+                labelDevCourses: "Daha önce gelişim kurslarına katıldınız mı?",
+                radioYes1: "Evet",
+                radioNo1: "Hayır",
+                labelCoursesList: "Katıldığınız bazı kursları belirtin",
+                labelVolunteer: "Gönüllülük projelerinde yer aldınız mı?",
+                radioYes2: "Evet",
+                radioNo2: "Hayır",
+                sec4Title: "4. Kendinizi Tanıtın ve Program",
+                labelReferral: "Saql programını nereden duydunuz?",
+                labelBio: "İki satırda kendinizden bahsedin",
+                labelExpectations: "Saql programından beklentileriniz nelerdir?",
+                sec5Title: "5. Kayıt Onayı ve Ücret",
+                payNoticeTitle: "Kayıt Onay Süreci:",
+                payNoticeDesc: "Kayıt onayı için 200 SAR yatırılmalıdır. Mülakat sonrası toplam ücretten düşülecektir. <br><span class='text-saql-orange font-bold'>* Mülakat olumsuz sonuçlanırsa ücret tamamen iade edilir.</span>",
+                confirmText: "Ücret dernek hesabına yatırılacak ve dekont gönderilecektir",
+                submitBtnText: "Başvuruyu Gönder",
+                resetBtnText: "Formu Temizle",
+                modalTitle: "Başvuru Gönderildi!",
+                modalMessage: "Kayıt yaptığınız için teşekkür ederiz. İşleminiz tamamlanmak üzere Google Form sayfasına yönlendirildi.",
+                modalCloseBtn: "Anladım",
+                ftPrivacy: "Gizlilik Politikası",
+                ftTerms: "Şartlar ve Koşullar",
+                ftSupport: "Teknik Destek"
+            }
+        };
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'tr' : 'ar';
+            const langData = translations[currentLang];
+            const htmlTag = document.documentElement;
+
+            if (currentLang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'tr');
+            }
+
+            Object.keys(langData).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (key === 'instructionsText' || key === 'payNoticeDesc') {
+                        el.innerHTML = langData[key];
+                    } else {
+                        el.textContent = langData[key];
+                    }
+                }
+            });
+        }
+
+        function toggleOtherReferralInput() {
+            const check = document.getElementById('referralOtherCheck');
+            const box = document.getElementById('otherReferralBox');
+            if (check.checked) {
+                box.classList.remove('hidden');
+            } else {
+                box.classList.add('hidden');
+            }
+        }
+
+        function copyToClipboard(text, btnElement) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const originalHTML = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i>';
+            setTimeout(() => {
+                btnElement.innerHTML = originalHTML;
+            }, 1800);
+        }
+
+        function handleFormSubmit(event) {
+            const submitBtn = document.getElementById('submitBtn');
+            const submitBtnText = document.getElementById('submitBtnText');
+
+            submitBtnText.textContent = currentLang === 'ar' ? 'جاري التحويل...' : 'Gönderiliyor...';
+
+            setTimeout(() => {
+                const modal = document.getElementById('successModal');
+                const modalCard = document.getElementById('modalCard');
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalCard.classList.remove('scale-95');
+                    modalCard.classList.add('scale-100');
+                }, 10);
+
+                submitBtnText.textContent = translations[currentLang].submitBtnText;
+            }, 800);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const modalCard = document.getElementById('modalCard');
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+    </script>
+</body>
+</html>
